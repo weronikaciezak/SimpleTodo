@@ -3,10 +3,10 @@ async function loadTasks() {
     const tasks = await res.json();
     const list = document.getElementById('todo-list');
     list.innerHTML = '';
-    tasks.forEach((task, index) => {
+    tasks.forEach((task) => {
         const li = document.createElement('li');
         li.className = 'task';
-        li.innerHTML = `${task} <button onclick="deleteTask(${index})">Delete</button>`;
+        li.innerHTML = `${task.title} <button onclick="deleteTask(${task.id})">Delete</button>`;
         list.appendChild(li);
     });
 }
@@ -25,10 +25,9 @@ async function addTask() {
     }
 }
 
-async function deleteTask(index) {
-    await fetch(`/tasks/${index}`, { method: 'DELETE' });
+async function deleteTask(id) {
+    await fetch(`/tasks/${id}`, { method: 'DELETE' });
     loadTasks();
 }
 
-// Load tasks initially
 loadTasks();
