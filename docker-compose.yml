@@ -20,7 +20,7 @@ services:
     build: ./backend
     container_name: todo-backend
     restart: unless-stopped
-    env_file: ./backend/.env
+    env_file: .env
     ports:
       - '3001:3001'
     depends_on:
