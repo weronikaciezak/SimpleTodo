@@ -10,7 +10,9 @@ lerna-debug.log*
 # Environment variables
 *.env
 
+#moze powodowac bledy
 node_modules
+
 dist
 dist-ssr
 *.local
