@@ -1,16 +1,14 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15
-    container_name: todo-postgres
+    container_name: database
     restart: unless-stopped
     ports:
-      - '5432:5432'    # W DEV. W PROD nie wystawiaj!
+      - '5432:5432'
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
@@ -18,13 +16,16 @@ services:
 
   app:
     build: .
-    container_name: simple-to-do
+    container_name: app
     restart: unless-stopped
     ports:
       - '3000:3000'
     networks:
       - todo-network
 
+volumes:
+    pgdata:
+
 networks:
   todo-network:
-    driver: bridge
+
