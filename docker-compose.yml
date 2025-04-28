@@ -1,13 +1,47 @@
 version: '3.8'
 
 services:
-  react:
-    container_name: to-do-app
-    build:
-      context: ./
-      dockerfile: Dockerfile
+  db:
+    image: postgres:15
+    container_name: todo-postgres
+    restart: unless-stopped
     ports:
-      - "3000:3000"
+      - '5432:5432'    # W DEV. W PROD nie wystawiaj!
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - ./app:/usr/src/app
-      - /usr/src/app/node_modules
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - todo-network
+
+  backend:
+    build: ./backend
+    container_name: todo-backend
+    restart: unless-stopped
+    env_file: ./backend/.env
+    ports:
+      - '3001:3001'
+    depends_on:
+      - db
+    networks:
+      - todo-network
+
+  frontend:
+    build: ./frontend
+    container_name: todo-frontend
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+    networks:
+      - todo-network
+
+volumes:
+  pgdata:
+
+networks:
+  todo-network:
+    driver: bridge
