@@ -16,31 +16,14 @@ services:
     networks:
       - todo-network
 
-  backend:
-    build: ./backend
-    container_name: todo-backend
-    restart: unless-stopped
-    env_file: .env
-    ports:
-      - '3001:3001'
-    depends_on:
-      - db
-    networks:
-      - todo-network
-
-  frontend:
-    build: ./frontend
-    container_name: todo-frontend
+  app:
+    build: .
+    container_name: simple-to-do
     restart: unless-stopped
     ports:
       - '3000:3000'
-    depends_on:
-      - backend
     networks:
       - todo-network
-
-volumes:
-  pgdata:
 
 networks:
   todo-network:
