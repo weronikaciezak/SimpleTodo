@@ -1,4 +1,4 @@
-# 📝 Simple To-Do App (Node.js + Express + PostgreSQL)
+# 📝 Simple To-Do App
 
 ## Technologies Used
 - **Node.js**
