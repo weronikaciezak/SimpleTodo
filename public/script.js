@@ -1,12 +1,28 @@
+let currentGroupId = null;
+
+function selectGroup(groupId) {
+    currentGroupId = groupId;
+    loadTasks();
+}
+
 async function loadTasks() {
-    const res = await fetch('/tasks');
+    const params = new URLSearchParams();
+    if (currentGroupId !== null) {
+        params.append('group_id', currentGroupId);
+    }
+    let url = '/tasks';
+    if (params.toString()) {
+        url += `?${params.toString()}`;
+    }
+
+    const res = await fetch(url);
     const tasks = await res.json();
     const list = document.getElementById('todo-list');
     list.innerHTML = '';
     tasks.forEach((task) => {
         const li = document.createElement('li');
         li.className = 'task';
-        li.innerHTML = `${task.title} <button onclick="deleteTask(${task.id})">Delete</button>`;
+        li.innerHTML = `${task.title} <button onclick="deleteTask(${task.id})">Done</button>`;
         list.appendChild(li);
     });
 }
@@ -18,7 +34,7 @@ async function addTask() {
         await fetch('/tasks', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ task })
+            body: JSON.stringify({ task, group_id: currentGroupId })
         });
         input.value = '';
         loadTasks();
