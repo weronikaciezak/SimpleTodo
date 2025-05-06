@@ -6,8 +6,8 @@ const PORT = 3000;
 
 const pool = new Pool({
     user: process.env.DB_USER,
-    // host: process.env.DB_HOST,
-    host: 'localhost',
+    host: process.env.DB_HOST, // for app in docker
+    // host: 'localhost', // for app locally
     database: process.env.DB_NAME,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT,
