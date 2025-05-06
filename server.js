@@ -104,6 +104,31 @@ app.delete('/groups/:id', async (req, res) => {
     }
 });
 
+// Get all groups
+app.get('/groups', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT id, name FROM groups');
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to fetch groups' });
+    }
+});
+
+// Update task progress
+app.put('/tasks/:id/progress', async (req, res) => {
+    const { id } = req.params;
+    const { progress } = req.body;
+    try {
+        await pool.query('UPDATE tasks SET progress = $1 WHERE id = $2', [progress, id]);
+        res.sendStatus(200);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to update task progress' });
+    }
+});
+
+
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
