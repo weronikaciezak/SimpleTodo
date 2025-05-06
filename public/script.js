@@ -53,7 +53,7 @@ async function createGroup() {
 }
 
 async function deleteGroup() {
-    const groupId = document.getElementById('group-selector').value; // Pobierz ID wybranej grupy
+    const groupId = document.getElementById('group-selector').value;
 
     if (!groupId) {
         alert('Please select a group to delete!');
@@ -71,7 +71,7 @@ async function deleteGroup() {
         });
 
         if (response.ok) {
-            alert('Group deleted successfully!');
+            // alert('Group deleted successfully!');
             loadGroups();
         } else {
             alert('Failed to delete group');

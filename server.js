@@ -16,7 +16,7 @@ const pool = new Pool({
 app.use(express.static('public'));
 app.use(express.json());
 
-
+// Get tasks
 app.get('/tasks', async (req, res) => {
     const { progress, group_id } = req.query;
     let query = 'SELECT * FROM tasks';
