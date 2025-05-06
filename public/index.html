@@ -17,25 +17,26 @@
 <nav>
     <div class="nav-content">
         <div class="nav-title">📝 Simple To-Do</div>
-        <div>
-<!--            <a href="#">Login</a>-->
-        </div>
     </div>
 </nav>
 
 <!-- GROUP TOGGLE -->
-<div class="input-group">
-    <input type="text" id="group-name" placeholder="New Group" />
-    <button onclick="createGroup()">Create Group</button>
+<div class="group-controls">
+    <div class="input-group">
+        <input type="text" id="group-name" placeholder="New Group" />
+        <button onclick="createGroup()">Create Group</button>
+    </div>
+
+    <div class="group-select">
+        <div class="input-group">
+            <select id="group-selector" onchange="handleGroupChange(this.value)">
+                <option value="">All Groups</option>
+            </select>
+            <button onclick="deleteGroup()">Delete Group</button>
+        </div>
+    </div>
 </div>
 
-<div class="group-select">
-    <label for="group-selector">Select Group:</label>
-    <select id="group-selector" onchange="handleGroupChange(this.value)">
-        <option value="">All Groups</option>
-    </select>
-    <button onclick="deleteGroup()">Delete</button>
-</div>
 
 <!-- TASK INPUT -->
 <div class="input-group">
