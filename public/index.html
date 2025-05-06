@@ -4,147 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple To-Do</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Jersey+10&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        nav {
-            width: 100%;
-            /*background-color: #c3cfe2;*/
-            color: white;
-            padding: 2rem 1rem;
-        }
-
-        nav .nav-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-title {
-            font-size: 50px;
-            font-family: 'Cal+Sans', cursive;
-            color: #333;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 1rem;
-        }
-
-        .group-toggle {
-            margin: 30px 0 20px;
-            text-align: center;
-        }
-
-        .group-toggle button {
-            margin: 0 8px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #6495ED;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .group-toggle button:hover {
-            background-color: #4b74c3;
-        }
-
-        .columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            width: 100%;
-            padding: 0 20px 40px;
-        }
-
-        .column {
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .column h2 {
-            text-align: center;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .task {
-            background-color: #f9f9f9;
-            margin-bottom: 10px;
-            padding: 10px 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .task button {
-            background: none;
-            border: none;
-            color: #00A36C;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .input-group {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        #task-input {
-            padding: 10px;
-            font-size: 16px;
-            width: 250px;
-            border-radius: 8px;
-            border: 2px solid #ccc;
-            outline: none;
-        }
-
-        #task-input:focus {
-            border-color: #6495ED;
-        }
-
-        #add-task-btn {
-            padding: 10px 15px;
-            font-size: 16px;
-            margin-left: 10px;
-            background-color: #6495ED;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        #add-task-btn:hover {
-            background-color: #4b74c3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -159,10 +24,17 @@
 </nav>
 
 <!-- GROUP TOGGLE -->
-<div class="group-toggle">
-    <button onclick="selectGroup(1)">Grupa 1</button>
-    <button onclick="selectGroup(2)">Grupa 2</button>
-    <button onclick="selectGroup(null)">Wszystkie</button>
+<div class="input-group">
+    <input type="text" id="group-name" placeholder="New Group" />
+    <button onclick="createGroup()">Create Group</button>
+</div>
+
+<div class="group-select">
+    <label for="group-selector">Select Group:</label>
+    <select id="group-selector" onchange="handleGroupChange(this.value)">
+        <option value="">All Groups</option>
+    </select>
+    <button onclick="deleteGroup()">Delete</button>
 </div>
 
 <!-- TASK INPUT -->
