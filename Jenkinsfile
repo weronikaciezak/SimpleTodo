@@ -10,6 +10,7 @@ pipeline {
                  cleanWs()
             }
         }
+
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/weronikaciezak/SimpleTodo.git',
