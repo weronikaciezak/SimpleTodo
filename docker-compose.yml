@@ -18,6 +18,8 @@ services:
     build: .
     container_name: app
     restart: unless-stopped
+    depends_on:
+      - db
     ports:
       - '3000:3000'
     networks:
