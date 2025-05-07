@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/weronikaciezak/SimpleTodo.git',
-                    branch: 'main',
+                    branch: 'jenkins',
                     credentialsId: 'GitHub'
             }
         }
