@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: to_do_app
+      POSTGRES_DB: simple_to_do
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
@@ -32,6 +32,7 @@ volumes:
 
 networks:
   todo-network:
+    driver: bridge
   jenkins-net:
     external: true
 
