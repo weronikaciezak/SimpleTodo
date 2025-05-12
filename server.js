@@ -15,6 +15,7 @@ const pool = new Pool({
 
 app.use(express.static('public'));
 app.use(express.json());
+console.log(pool.options);
 
 // Get tasks
 app.get('/tasks', async (req, res) => {
