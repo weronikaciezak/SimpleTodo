@@ -8,7 +8,7 @@ const pool = new Pool({
     user: 'admin',
     host: 'db', // for app in docker
     // host: 'localhost', // for app locally
-    database: 'to_do_app',
+    database: 'simple_to_do',
     password: 'admin',
     port: '5432',
 });
