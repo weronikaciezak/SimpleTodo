@@ -15,8 +15,6 @@ const pool = new Pool({
 
 app.use(express.static('public'));
 app.use(express.json());
-console.log(`Connecting to PostgreSQL at ${pool.options.host}:${pool.options.port} with user ${pool.options.user}`);
-
 
 // Get tasks
 app.get('/tasks', async (req, res) => {
