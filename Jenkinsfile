@@ -19,15 +19,7 @@ pipeline {
             }
         }
 
-//         stage('Build') {
-//             steps {
-//                 sh 'echo "Removing old Docker image if it exists..."'
-//                 sh 'docker rmi licencjat:latest || true'
-//                 sh 'docker build -t licencjat:latest .'
-//             }
-//         }
-
-        stage('Deploy') {
+        stage('Build and Deploy') {
             steps {
                 sh 'docker-compose down'
                 sh 'docker-compose up -d --build'
