@@ -6,8 +6,8 @@ const PORT = 3000;
 
 const pool = new Pool({
     user: 'admin',
-    // host: 'db', // for app in docker
-    host: 'localhost', // for app locally
+    host: 'db', // for app in docker
+    // host: 'localhost', // for app locally
     database: 'simple_to_do',
     password: 'admin',
     port: '5432',
@@ -15,7 +15,8 @@ const pool = new Pool({
 
 app.use(express.static('public'));
 app.use(express.json());
-console.log(pool.options);
+console.log(`Connecting to PostgreSQL at ${pool.options.host}:${pool.options.port} with user ${pool.options.user}`);
+
 
 // Get tasks
 app.get('/tasks', async (req, res) => {
