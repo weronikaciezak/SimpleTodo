@@ -21,6 +21,8 @@ pipeline {
 
         stage('Build') {
             steps {
+                sh 'echo "Removing old Docker image if it exists..."'
+                sh 'docker rmi licencjat:latest || true'
                 sh 'docker build -t licencjat:latest .'
             }
         }
