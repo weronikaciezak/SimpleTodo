@@ -23,9 +23,14 @@ pipeline {
             }
         }
 
-        stage('Build and Deploy') {
+        stage('Copy .env file') {
             steps {
                 sh 'cp "$ENV" .env'
+            }
+        }
+
+        stage('Build and Deploy') {
+            steps {
                 sh 'docker-compose down'
                 sh 'docker-compose up -d --build'
             }
