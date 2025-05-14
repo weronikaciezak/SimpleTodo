@@ -4,6 +4,10 @@ pipeline {
         skipDefaultCheckout()
     }
 
+    environment {
+        ENV = credentials('env')
+    }
+
     stages {
         stage('Clean Workspace') {
             steps {
@@ -21,6 +25,7 @@ pipeline {
 
         stage('Build and Deploy') {
             steps {
+                sh 'cp "$ENV" .env'
                 sh 'docker-compose down'
                 sh 'docker-compose up -d --build'
             }

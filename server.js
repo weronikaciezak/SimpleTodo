@@ -5,11 +5,11 @@ const app = express();
 const PORT = 3000;
 
 const pool = new Pool({
-    user: 'admin',
+    user: process.env.DB_USER,
     host: 'db', // for app in docker
     // host: 'localhost', // for app locally
     database: 'simple_to_do',
-    password: 'admin',
+    password: process.env.DB_PASS,
     port: '5432',
 });
 
