@@ -1,31 +1,39 @@
 services:
   db:
     image: postgres:15
-    container_name: database
+    container_name: db
     restart: unless-stopped
     ports:
       - '5432:5432'
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_DB: simple_to_do
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
       - todo-network
+      - jenkins-net
 
   app:
     build: .
     container_name: app
     restart: unless-stopped
+    depends_on:
+      - db
     ports:
       - '3000:3000'
     networks:
       - todo-network
+      - jenkins-net
 
 volumes:
     pgdata:
 
 networks:
   todo-network:
+    driver: bridge
+  jenkins-net:
+    external: true
+
 

@@ -4,12 +4,17 @@ pipeline {
         skipDefaultCheckout()
     }
 
+    environment {
+        ENV = credentials('env')
+    }
+
     stages {
         stage('Clean Workspace') {
             steps {
                  cleanWs()
             }
         }
+
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/weronikaciezak/SimpleTodo.git',
@@ -18,19 +23,19 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Copy .env file') {
             steps {
-                sh 'docker build -t licencjat:latest .'
+                sh 'cp "$ENV" .env'
             }
         }
 
-//         stage('Deploy') {
-//             steps {
-//                 sh 'docker-compose down'
-//                 sh 'docker-compose up -d'
-//             }
-//         }
-//     }
+        stage('Build and Deploy') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker-compose up -d --build'
+            }
+        }
+    }
 
     post {
         success {
