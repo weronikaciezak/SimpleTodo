@@ -13,7 +13,6 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - todo-network
-      - jenkins-net
 
   app:
     build: .
@@ -25,7 +24,6 @@ services:
       - '3000:3000'
     networks:
       - todo-network
-      - jenkins-net
 
 volumes:
     pgdata:
@@ -33,7 +31,6 @@ volumes:
 networks:
   todo-network:
     driver: bridge
-  jenkins-net:
-    external: true
+
 
 
