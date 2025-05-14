@@ -6,11 +6,11 @@ const PORT = 3000;
 
 const pool = new Pool({
     user: process.env.DB_USER,
-    host: process.env.DB_HOST, // for app in docker
+    host: 'db', // for app in docker
     // host: 'localhost', // for app locally
-    database: process.env.DB_NAME,
+    database: 'simple_to_do',
     password: process.env.DB_PASS,
-    port: process.env.DB_PORT,
+    port: '5432',
 });
 
 app.use(express.static('public'));
