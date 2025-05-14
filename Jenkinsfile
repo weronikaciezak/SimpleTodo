@@ -18,14 +18,19 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/weronikaciezak/SimpleTodo.git',
-                    branch: 'env',
+                    branch: 'jenkins',
                     credentialsId: 'GitHub'
+            }
+        }
+
+        stage('Copy .env file') {
+            steps {
+                sh 'cp "$ENV" .env'
             }
         }
 
         stage('Build and Deploy') {
             steps {
-                sh 'cp "$ENV" .env'
                 sh 'docker-compose down'
                 sh 'docker-compose up -d --build'
             }
