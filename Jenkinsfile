@@ -4,6 +4,10 @@ pipeline {
         skipDefaultCheckout()
     }
 
+    environment {
+        ENV = credentials('env')
+    }
+
     stages {
         stage('Clean Workspace') {
             steps {
@@ -14,13 +18,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/weronikaciezak/SimpleTodo.git',
-                    branch: 'jenkins',
+                    branch: 'env',
                     credentialsId: 'GitHub'
             }
         }
 
         stage('Build and Deploy') {
             steps {
+                sh 'cp "$ENV" .env'
                 sh 'docker-compose down'
                 sh 'docker-compose up -d --build'
             }
