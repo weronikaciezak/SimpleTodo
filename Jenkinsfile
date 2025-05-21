@@ -19,7 +19,7 @@ pipeline {
             steps {
                 git url: 'https://github.com/weronikaciezak/SimpleTodo.git',
                     branch: 'main',
-                    credentialsId: 'GitHub'
+                    credentialsId: 'github_token'
             }
         }
 
