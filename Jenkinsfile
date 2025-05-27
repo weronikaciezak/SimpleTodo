@@ -9,11 +9,11 @@ pipeline {
     }
 
     stages {
-//         stage('Clean Workspace') {
-//             steps {
-//                  cleanWs()
-//             }
-//         }
+        stage('Clean Workspace') {
+            steps {
+                 cleanWs()
+            }
+        }
 
         stage('Checkout') {
             steps {
