@@ -39,10 +39,10 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment was successful!'
+            echo 'Success'
         }
         failure {
-            echo 'There was an error during the build or deployment.'
+            echo 'Failure'
         }
     }
 }
