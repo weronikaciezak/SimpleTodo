@@ -6,5 +6,6 @@
 - **PostgreSQL**
 - **Vanilla JavaScript** (fetch API)
 - **HTML5/CSS3**
-- **Docker**
-- **Jenkins**
+- **Contenerized in Docker**
+- **Automatically deployed upon commit by Jenkins**
+
