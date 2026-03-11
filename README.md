@@ -7,5 +7,6 @@
 - **Vanilla JavaScript** (fetch API)
 - **HTML5/CSS3**
 - **Contenerized in Docker**
-- **Automatically deployed upon commit by Jenkins**
+- **Automatically deployed upon commit with Jenkins**
+
 
